@@ -20,6 +20,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         createFbLoginButton()
         createUserInfoView()
+        //Check if already logged
         if let _ = AccessToken.current {
             getFbInfo()
         }
@@ -73,7 +74,7 @@ class ViewController: UIViewController {
         let session = URLSession(configuration: .default)
         let downloadPicTask = session.dataTask(with: url) { (data, response, error) in
             if let error = error {
-                print("Error downloading cat picture: \(error)")
+                print("Error downloading picture: \(error)")
             } else {
                 if let res = response as? HTTPURLResponse {
                     print("Downloaded fb profile picture with response code \(res.statusCode)")
@@ -90,7 +91,6 @@ class ViewController: UIViewController {
                 }
             }
         }
-        
         downloadPicTask.resume()
     }
     
