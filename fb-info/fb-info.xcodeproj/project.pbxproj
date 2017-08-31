@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DB7E1AD81F57BB3500537784 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7E1AD71F57BB3500537784 /* Networking.swift */; };
+		DB7E1ADA1F57C02A00537784 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7E1AD91F57C02A00537784 /* Models.swift */; };
 		DB9BA5D71F57A949000ED856 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9BA5D61F57A949000ED856 /* AppDelegate.swift */; };
 		DB9BA5D91F57A949000ED856 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9BA5D81F57A949000ED856 /* ViewController.swift */; };
 		DB9BA5DC1F57A949000ED856 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB9BA5DA1F57A949000ED856 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 		C2DCA245B6C84C6844C0ED01 /* Pods-fb-info.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fb-info.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fb-info/Pods-fb-info.debug.xcconfig"; sourceTree = "<group>"; };
 		C6C2ED89068DA0D6E75D1B8A /* Pods_fb_info.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fb_info.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7E1AD71F57BB3500537784 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		DB7E1AD91F57C02A00537784 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		DB9BA5D31F57A949000ED856 /* fb-info.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fb-info.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB9BA5D61F57A949000ED856 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB9BA5D81F57A949000ED856 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				DB9BA5D61F57A949000ED856 /* AppDelegate.swift */,
 				DB9BA5D81F57A949000ED856 /* ViewController.swift */,
 				DB7E1AD71F57BB3500537784 /* Networking.swift */,
+				DB7E1AD91F57C02A00537784 /* Models.swift */,
 				DB9BA5DA1F57A949000ED856 /* Main.storyboard */,
 				DB9BA5DD1F57A949000ED856 /* Assets.xcassets */,
 				DB9BA5DF1F57A949000ED856 /* LaunchScreen.storyboard */,
@@ -232,6 +235,7 @@
 				DB7E1AD81F57BB3500537784 /* Networking.swift in Sources */,
 				DB9BA5D91F57A949000ED856 /* ViewController.swift in Sources */,
 				DB9BA5D71F57A949000ED856 /* AppDelegate.swift in Sources */,
+				DB7E1ADA1F57C02A00537784 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
