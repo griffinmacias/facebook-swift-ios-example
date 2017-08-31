@@ -35,4 +35,10 @@ class UserInfoView: UIView {
         containerView.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
         containerView.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
     }
+    
+    func clearContents() {
+        imageView.image = nil
+        nameLabel.text = "Name"
+        emailLabel.text = "Email"        
+    }
 }

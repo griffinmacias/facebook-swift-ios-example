@@ -11,27 +11,30 @@ import FacebookLogin
 import FacebookCore
 
 class ViewController: UIViewController {
+    
     var loginButton: LoginButton?
     var userInfoView: UserInfoView?
     var user: User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createFbLoginButton()
+        createUserInfoView()
         if let _ = AccessToken.current {
             getFbInfo()
         }
-        
+    }
+    
+    func createUserInfoView() {
         let userInfoView = UserInfoView()
         view.addSubview(userInfoView)
         let margins = view.layoutMarginsGuide
         userInfoView.translatesAutoresizingMaskIntoConstraints = false
         userInfoView.centerYAnchor.constraint(equalTo: margins.centerYAnchor).isActive = true
         userInfoView.centerXAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
-        userInfoView.heightAnchor.constraint(equalToConstant: 300).isActive = true
-        userInfoView.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        userInfoView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        userInfoView.widthAnchor.constraint(equalToConstant: 200).isActive = true
         self.userInfoView = userInfoView
-
-        
     }
     
     func updateUserView() {
@@ -45,30 +48,34 @@ class ViewController: UIViewController {
             userInfoView.emailLabel.text = email
             
             if let pictureURL = URL(string: pictureUrl) {
-                let session = URLSession(configuration: .default)
-                let downloadPicTask = session.dataTask(with: pictureURL) { (data, response, error) in
-                    if let error = error {
-                        print("Error downloading cat picture: \(error)")
-                    } else {
-                        if let res = response as? HTTPURLResponse {
-                            print("Downloaded fb profile picture with response code \(res.statusCode)")
-                            if let imageData = data {
-                                let image = UIImage(data: imageData)
-                                DispatchQueue.main.async {
-                                    userInfoView.imageView.image = image
-                                }
-                            } else {
-                                print("Couldn't get image: Image is nil")
-                            }
-                        } else {
-                            print("Couldn't get response code for some reason")
-                        }
-                    }
-                }
-                
-                downloadPicTask.resume()
+                downloadProfilePic(pictureURL)
             }
         }
+    }
+    
+    func downloadProfilePic(_ url: URL) {
+        let session = URLSession(configuration: .default)
+        let downloadPicTask = session.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                print("Error downloading cat picture: \(error)")
+            } else {
+                if let res = response as? HTTPURLResponse {
+                    print("Downloaded fb profile picture with response code \(res.statusCode)")
+                    if let imageData = data {
+                        let image = UIImage(data: imageData)
+                        DispatchQueue.main.async {
+                            self.userInfoView?.imageView.image = image
+                        }
+                    } else {
+                        print("Couldn't get image: Image is nil")
+                    }
+                } else {
+                    print("Couldn't get response code for some reason")
+                }
+            }
+        }
+        
+        downloadPicTask.resume()
     }
     
     func createFbLoginButton() {
@@ -85,7 +92,7 @@ class ViewController: UIViewController {
     
     func getFbInfo() {
         let request = GraphRequest(graphPath: "me",
-                                   parameters: [ "fields": "first_name, last_name, picture, email" ])
+                                   parameters: [ "fields": "first_name, last_name, picture.type(large), email" ])
         request.start { (response, result) in
             switch result {
             case .failed(let error):
@@ -98,11 +105,6 @@ class ViewController: UIViewController {
                 }
             }
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
@@ -123,6 +125,6 @@ extension ViewController: LoginButtonDelegate {
     }
     
     func loginButtonDidLogOut(_ loginButton: LoginButton) {
-        print(loginButton)
+        self.userInfoView?.clearContents()
     }
 }
