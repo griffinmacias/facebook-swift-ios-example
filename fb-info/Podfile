@@ -7,4 +7,5 @@ target 'fb-info' do
 
   # Pods for fb-info
 pod 'FacebookLogin'
+pod 'FacebookCore'
 end
