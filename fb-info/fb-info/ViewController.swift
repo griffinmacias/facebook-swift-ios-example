@@ -25,6 +25,8 @@ class ViewController: UIViewController {
         }
     }
     
+    // MARK: Views
+    
     func createUserInfoView() {
         let userInfoView = UserInfoView()
         view.addSubview(userInfoView)
@@ -53,6 +55,20 @@ class ViewController: UIViewController {
         }
     }
     
+    func createFbLoginButton() {
+        loginButton = LoginButton(readPermissions: [ .publicProfile, .email ])
+        if let loginButton = loginButton {
+            loginButton.delegate = self
+            view.addSubview(loginButton)
+            loginButton.translatesAutoresizingMaskIntoConstraints = false
+            let margins = view.layoutMarginsGuide
+            loginButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -16).isActive = true
+            loginButton.centerXAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
+        }
+    }
+    
+    // MARK: Network
+    
     func downloadProfilePic(_ url: URL) {
         let session = URLSession(configuration: .default)
         let downloadPicTask = session.dataTask(with: url) { (data, response, error) in
@@ -76,18 +92,6 @@ class ViewController: UIViewController {
         }
         
         downloadPicTask.resume()
-    }
-    
-    func createFbLoginButton() {
-        loginButton = LoginButton(readPermissions: [ .publicProfile, .email ])
-        if let loginButton = loginButton {
-            loginButton.delegate = self
-            view.addSubview(loginButton)
-            loginButton.translatesAutoresizingMaskIntoConstraints = false
-            let margins = view.layoutMarginsGuide
-            loginButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -16).isActive = true
-            loginButton.centerXAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
-        }
     }
     
     func getFbInfo() {
