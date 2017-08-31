@@ -17,14 +17,18 @@ class ViewController: UIViewController {
         let loginButton = LoginButton(readPermissions: [ .publicProfile, .email ])
         loginButton.delegate = self
         loginButton.center = view.center
-        
         if let _ = AccessToken.current {
             let request = GraphRequest(graphPath: "me",
                                        parameters: [ "fields": "first_name, last_name, picture, email" ])
             request.start { (response, result) in
-                print(result)
+                switch result {
+                case .failed(let error):
+                    print(error)
+                case .success(response: _):
+                    print(result)
+                }
             }
-        }
+        } 
 
         view.addSubview(loginButton)
     }
