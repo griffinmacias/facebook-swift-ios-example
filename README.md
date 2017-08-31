@@ -15,5 +15,5 @@ After that, I implemented an asynchronous call to fetch the imageData to display
 Finally I spent time making sure my code was neatly organized and that I chose explanatory function and variable names. 
 
 Let me know if you have any questions/problems/concerns! 
-
-- Mason
+ 
+Mason
