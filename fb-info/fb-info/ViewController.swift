@@ -24,8 +24,13 @@ class ViewController: UIViewController {
         loginButton = LoginButton(readPermissions: [ .publicProfile, .email ])
         if let loginButton = loginButton {
             loginButton.delegate = self
-            loginButton.center = view.center
             view.addSubview(loginButton)
+            loginButton.translatesAutoresizingMaskIntoConstraints = false
+            let margins = view.layoutMarginsGuide
+            loginButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -16).isActive = true
+            loginButton.centerXAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
+            loginButton.heightAnchor.constraint(equalToConstant: 20)
+            loginButton.widthAnchor.constraint(equalToConstant: 50)
         }
     }
     
