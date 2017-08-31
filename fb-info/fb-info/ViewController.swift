@@ -12,11 +12,62 @@ import FacebookCore
 
 class ViewController: UIViewController {
     var loginButton: LoginButton?
+    var userInfoView: UserInfoView?
+    var user: User?
     override func viewDidLoad() {
         super.viewDidLoad()
         createFbLoginButton()
         if let _ = AccessToken.current {
             getFbInfo()
+        }
+        
+        let userInfoView = UserInfoView()
+        view.addSubview(userInfoView)
+        let margins = view.layoutMarginsGuide
+        userInfoView.translatesAutoresizingMaskIntoConstraints = false
+        userInfoView.centerYAnchor.constraint(equalTo: margins.centerYAnchor).isActive = true
+        userInfoView.centerXAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
+        userInfoView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        userInfoView.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        self.userInfoView = userInfoView
+
+        
+    }
+    
+    func updateUserView() {
+        if let user = self.user,
+            let first = user.first,
+            let last = user.last,
+            let email = user.email,
+            let pictureUrl = user.pictureUrl,
+            let userInfoView = self.userInfoView  {
+            userInfoView.nameLabel.text = "\(first) \(last)"
+            userInfoView.emailLabel.text = email
+            
+            if let pictureURL = URL(string: pictureUrl) {
+                let session = URLSession(configuration: .default)
+                let downloadPicTask = session.dataTask(with: pictureURL) { (data, response, error) in
+                    if let error = error {
+                        print("Error downloading cat picture: \(error)")
+                    } else {
+                        if let res = response as? HTTPURLResponse {
+                            print("Downloaded fb profile picture with response code \(res.statusCode)")
+                            if let imageData = data {
+                                let image = UIImage(data: imageData)
+                                DispatchQueue.main.async {
+                                    userInfoView.imageView.image = image
+                                }
+                            } else {
+                                print("Couldn't get image: Image is nil")
+                            }
+                        } else {
+                            print("Couldn't get response code for some reason")
+                        }
+                    }
+                }
+                
+                downloadPicTask.resume()
+            }
         }
     }
     
@@ -29,8 +80,6 @@ class ViewController: UIViewController {
             let margins = view.layoutMarginsGuide
             loginButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -16).isActive = true
             loginButton.centerXAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
-            loginButton.heightAnchor.constraint(equalToConstant: 20)
-            loginButton.widthAnchor.constraint(equalToConstant: 50)
         }
     }
     
@@ -44,7 +93,8 @@ class ViewController: UIViewController {
             case .success(let graphResponse):
                 if let responseDictionary = graphResponse.dictionaryValue {
                     print(responseDictionary)
-                    let user = User(responseDictionary)
+                    self.user = User(responseDictionary)
+                    self.updateUserView()
                 }
             }
         }
