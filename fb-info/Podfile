@@ -6,7 +6,5 @@ target 'fb-info' do
   use_frameworks!
 
   # Pods for fb-info
-pod 'FacebookCore'
 pod 'FacebookLogin'
-pod 'FacebookShare'
 end
