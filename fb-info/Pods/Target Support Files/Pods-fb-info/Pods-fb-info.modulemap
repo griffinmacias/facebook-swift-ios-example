@@ -1,0 +1,6 @@
+framework module Pods_fb_info {
+  umbrella header "Pods-fb-info-umbrella.h"
+
+  export *
+  module * { export * }
+}

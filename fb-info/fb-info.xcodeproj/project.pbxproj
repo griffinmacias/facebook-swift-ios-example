@@ -12,9 +12,13 @@
 		DB9BA5DC1F57A949000ED856 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB9BA5DA1F57A949000ED856 /* Main.storyboard */; };
 		DB9BA5DE1F57A949000ED856 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB9BA5DD1F57A949000ED856 /* Assets.xcassets */; };
 		DB9BA5E11F57A949000ED856 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB9BA5DF1F57A949000ED856 /* LaunchScreen.storyboard */; };
+		EE623F5F6F4AE1F171225D87 /* Pods_fb_info.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6C2ED89068DA0D6E75D1B8A /* Pods_fb_info.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8EB5F93EC14A3C57830DDB59 /* Pods-fb-info.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fb-info.release.xcconfig"; path = "Pods/Target Support Files/Pods-fb-info/Pods-fb-info.release.xcconfig"; sourceTree = "<group>"; };
+		C2DCA245B6C84C6844C0ED01 /* Pods-fb-info.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fb-info.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fb-info/Pods-fb-info.debug.xcconfig"; sourceTree = "<group>"; };
+		C6C2ED89068DA0D6E75D1B8A /* Pods_fb_info.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fb_info.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB9BA5D31F57A949000ED856 /* fb-info.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fb-info.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB9BA5D61F57A949000ED856 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB9BA5D81F57A949000ED856 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,17 +33,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE623F5F6F4AE1F171225D87 /* Pods_fb_info.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		058FBAF581945403E4B27D6A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C2DCA245B6C84C6844C0ED01 /* Pods-fb-info.debug.xcconfig */,
+				8EB5F93EC14A3C57830DDB59 /* Pods-fb-info.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		911EB57DFC5CC2D87B3E3C3F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C6C2ED89068DA0D6E75D1B8A /* Pods_fb_info.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DB9BA5CA1F57A949000ED856 = {
 			isa = PBXGroup;
 			children = (
 				DB9BA5D51F57A949000ED856 /* fb-info */,
 				DB9BA5D41F57A949000ED856 /* Products */,
+				058FBAF581945403E4B27D6A /* Pods */,
+				911EB57DFC5CC2D87B3E3C3F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DB9BA5E51F57A949000ED856 /* Build configuration list for PBXNativeTarget "fb-info" */;
 			buildPhases = (
+				2021ADEEFEFA1B8BE49D746B /* [CP] Check Pods Manifest.lock */,
 				DB9BA5CF1F57A949000ED856 /* Sources */,
 				DB9BA5D01F57A949000ED856 /* Frameworks */,
 				DB9BA5D11F57A949000ED856 /* Resources */,
+				BEAB91414AFD3B0FDCB8781A /* [CP] Embed Pods Frameworks */,
+				FF534848909EF8C772C1FAB2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,6 +158,72 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2021ADEEFEFA1B8BE49D746B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-fb-info-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BEAB91414AFD3B0FDCB8781A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-fb-info/Pods-fb-info-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fb-info/Pods-fb-info-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF534848909EF8C772C1FAB2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fb-info/Pods-fb-info-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DB9BA5CF1F57A949000ED856 /* Sources */ = {
@@ -259,6 +352,7 @@
 		};
 		DB9BA5E61F57A949000ED856 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2DCA245B6C84C6844C0ED01 /* Pods-fb-info.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = JA52596255;
@@ -272,6 +366,7 @@
 		};
 		DB9BA5E71F57A949000ED856 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EB5F93EC14A3C57830DDB59 /* Pods-fb-info.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = JA52596255;
