@@ -10,6 +10,7 @@
 		DB7E1ADA1F57C02A00537784 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7E1AD91F57C02A00537784 /* Models.swift */; };
 		DB7E1ADC1F57C98E00537784 /* UserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB7E1ADB1F57C98E00537784 /* UserInfoView.xib */; };
 		DB7E1ADE1F57CAB200537784 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7E1ADD1F57CAB200537784 /* UserInfoView.swift */; };
+		DB851B7C1F5CE9F100DCAD7C /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB851B7B1F5CE9F100DCAD7C /* Networking.swift */; };
 		DB9BA5D71F57A949000ED856 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9BA5D61F57A949000ED856 /* AppDelegate.swift */; };
 		DB9BA5D91F57A949000ED856 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9BA5D81F57A949000ED856 /* ViewController.swift */; };
 		DB9BA5DC1F57A949000ED856 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB9BA5DA1F57A949000ED856 /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 		DB7E1AD91F57C02A00537784 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		DB7E1ADB1F57C98E00537784 /* UserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoView.xib; sourceTree = "<group>"; };
 		DB7E1ADD1F57CAB200537784 /* UserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
+		DB851B7B1F5CE9F100DCAD7C /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		DB9BA5D31F57A949000ED856 /* fb-info.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fb-info.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB9BA5D61F57A949000ED856 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB9BA5D81F57A949000ED856 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				DB9BA5D61F57A949000ED856 /* AppDelegate.swift */,
 				DB9BA5D81F57A949000ED856 /* ViewController.swift */,
 				DB7E1AD91F57C02A00537784 /* Models.swift */,
+				DB851B7B1F5CE9F100DCAD7C /* Networking.swift */,
 				DB7E1ADB1F57C98E00537784 /* UserInfoView.xib */,
 				DB7E1ADD1F57CAB200537784 /* UserInfoView.swift */,
 				DB9BA5DA1F57A949000ED856 /* Main.storyboard */,
@@ -237,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB9BA5D91F57A949000ED856 /* ViewController.swift in Sources */,
+				DB851B7C1F5CE9F100DCAD7C /* Networking.swift in Sources */,
 				DB9BA5D71F57A949000ED856 /* AppDelegate.swift in Sources */,
 				DB7E1ADA1F57C02A00537784 /* Models.swift in Sources */,
 				DB7E1ADE1F57CAB200537784 /* UserInfoView.swift in Sources */,

@@ -18,8 +18,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createFbLoginButton()
-        createUserInfoView()
+        self.createFbLoginButton()
+        self.createUserInfoView()
         //Check if already logged
         if let _ = AccessToken.current {
             getFbInfo()
