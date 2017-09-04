@@ -9,28 +9,22 @@
 import Foundation
 
 struct User {
-    var first: String?
-    var last: String?
-    var email: String?
-    var pictureUrl: String?
+    var first: String
+    var last: String
+    var email: String
+    var pictureUrl: String
     
-    init(_ dictionary: [String: Any]) {
+    init?(_ dictionary: [String: Any]) {
         
-        if let firstName = dictionary["first_name"] as? String {
-            self.first = firstName
-        }
-        if let lastName = dictionary["last_name"] as? String {
-            self.last = lastName
-        }
-        
-        if let email = dictionary["email"] as? String {
-            self.email = email
-        }
-        
-        if let picture = dictionary["picture"] as? [String: Any],
-        let data = picture["data"] as? [String: Any],
-            let picURL = data["url"] as? String {
-            self.pictureUrl = picURL
-        }
+        guard let first = dictionary["first_name"] as? String,
+            let last = dictionary["last_name"] as? String,
+            let email = dictionary["email"] as? String,
+            let pictureInfo = dictionary["picture"] as? [String: Any],
+            let pictureData = pictureInfo["data"] as? [String: Any],
+            let pictureURL = pictureData["url"] as? String else { return nil }
+        self.first = first
+        self.last = last
+        self.email = email
+        self.pictureUrl = pictureURL
     }
 }

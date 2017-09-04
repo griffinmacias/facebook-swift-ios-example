@@ -15,14 +15,14 @@ class ViewController: UIViewController {
     var loginButton: LoginButton?
     var userInfoView: UserInfoView?
     var user: User?
+    var isAlreadyLoggedIn:Bool = (AccessToken.current != nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.createFbLoginButton()
+        self.createFacebookLoginButton()
         self.createUserInfoView()
-        //Check if already logged
-        if let _ = AccessToken.current {
-            self.getFbInfo()
+        if self.isAlreadyLoggedIn {
+            self.getFacebookInfo()
         }
     }
     
@@ -41,22 +41,15 @@ class ViewController: UIViewController {
     }
     
     func updateUserView() {
-        if let user = self.user,
-            let first = user.first,
-            let last = user.last,
-            let email = user.email,
-            let pictureUrl = user.pictureUrl,
-            let userInfoView = self.userInfoView  {
-            userInfoView.nameLabel.text = "\(first) \(last)"
-            userInfoView.emailLabel.text = email
+        guard let user = self.user, let userInfoView = self.userInfoView else  { return }
+            userInfoView.nameLabel.text = "\(user.first) \(user.last)"
+            userInfoView.emailLabel.text = user.email
             
-            if let pictureURL = URL(string: pictureUrl) {
-                downloadProfilePic(pictureURL)
-            }
-        }
+        guard let pictureURL = URL(string: user.pictureUrl) else { return }
+        self.getProfilePic(with: pictureURL)
     }
     
-    func createFbLoginButton() {
+    func createFacebookLoginButton() {
         loginButton = LoginButton(readPermissions: [ .publicProfile, .email ])
         if let loginButton = loginButton {
             loginButton.delegate = self
@@ -68,33 +61,15 @@ class ViewController: UIViewController {
         }
     }
     
-    // MARK: Network
+    // MARK: Network calls
     
-    func downloadProfilePic(_ url: URL) {
-        let session = URLSession(configuration: .default)
-        let downloadPicTask = session.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                print("Error downloading picture: \(error)")
-            } else {
-                if let res = response as? HTTPURLResponse {
-                    print("Downloaded fb profile picture with response code \(res.statusCode)")
-                    if let imageData = data {
-                        let image = UIImage(data: imageData)
-                        DispatchQueue.main.async {
-                            self.userInfoView?.imageView.image = image
-                        }
-                    } else {
-                        print("Couldn't get image: Image is nil")
-                    }
-                } else {
-                    print("Couldn't get response code for some reason")
-                }
-            }
+    func getProfilePic(with url: URL) {
+        APIClient.shared.downloadData(with: url) { (data, error) in
+            //
         }
-        downloadPicTask.resume()
     }
     
-    func getFbInfo() {
+    func getFacebookInfo() {
         APIClient.shared.getFacebookInfo { (fbDictionary, error) in
             guard let fbDictionary = fbDictionary else {
                 //update UI alert user of error
@@ -116,7 +91,7 @@ extension ViewController: LoginButtonDelegate {
             print(accessToken)
             print(grantedPermissions)
             print(declinedPermissions)
-            self.getFbInfo()
+            self.getFacebookInfo()
         case .cancelled:
             print("cancelled")
         case .failed(let error):
