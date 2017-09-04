@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         self.createUserInfoView()
         //Check if already logged
         if let _ = AccessToken.current {
-            getFbInfo()
+            self.getFbInfo()
         }
     }
     
@@ -95,18 +95,14 @@ class ViewController: UIViewController {
     }
     
     func getFbInfo() {
-        let request = GraphRequest(graphPath: "me",
-                                   parameters: [ "fields": "first_name, last_name, picture.type(large), email" ])
-        request.start { (response, result) in
-            switch result {
-            case .failed(let error):
-                print(error)
-            case .success(let graphResponse):
-                if let responseDictionary = graphResponse.dictionaryValue {
-                    print(responseDictionary)
-                    self.user = User(responseDictionary)
-                    self.updateUserView()
-                }
+        APIClient.shared.getFacebookInfo { (fbDictionary, error) in
+            guard let fbDictionary = fbDictionary else {
+                //update UI alert user of error
+                return
+            }
+            self.user = User(fbDictionary)
+            DispatchQueue.main.async {
+                self.updateUserView()
             }
         }
     }

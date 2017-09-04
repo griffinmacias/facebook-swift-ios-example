@@ -10,7 +10,7 @@ import Foundation
 import FacebookCore
 
 final class APIClient {
-    static let sharedInstance = APIClient()
+    static let shared = APIClient()
     fileprivate init() {} //Prevents others from using the default () init
     
     public func downloadData(with url: URL, completion: @escaping (_ data: Data?, _ error: Error?)-> Void) {

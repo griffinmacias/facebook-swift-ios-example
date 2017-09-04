@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import FacebookCore
 
 struct User {
     var first: String?
