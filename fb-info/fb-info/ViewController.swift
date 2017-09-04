@@ -65,7 +65,14 @@ class ViewController: UIViewController {
     
     func getProfilePic(with url: URL) {
         APIClient.shared.downloadData(with: url) { (data, error) in
-            //
+            guard let imageData = data else {
+                // display error to user
+                return
+            }
+            let facebookImage = UIImage(data: imageData)
+            DispatchQueue.main.async {
+                self.userInfoView?.imageView.image = facebookImage
+            }
         }
     }
     
