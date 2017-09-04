@@ -116,7 +116,7 @@ extension ViewController: LoginButtonDelegate {
             print(accessToken)
             print(grantedPermissions)
             print(declinedPermissions)
-            getFbInfo()
+            self.getFbInfo()
         case .cancelled:
             print("cancelled")
         case .failed(let error):
